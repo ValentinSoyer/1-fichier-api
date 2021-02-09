@@ -13,7 +13,7 @@ module UnFichierApi
         body = body_from_parameters parameters: method(__method__).parameters, method_binding: binding
         call path: action_route('cp'), body: body
       end
-      
+
       def download(url: nil, inline: nil, cdn: nil, restrict_ip: nil, single: nil, pass: nil, no_ssl: nil, folder_id: nil, filename: nil, sharing_user: nil)
         body = body_from_parameters parameters: method(__method__).parameters, method_binding: binding
         call path: 'download/get_token.cgi', body: body
@@ -39,7 +39,7 @@ module UnFichierApi
         call path: action_route('rm'), body: body
       end
 
-      def rename(urls: [], pretty: nil)
+      def rename(urls: [])
         body = body_from_parameters parameters: method(__method__).parameters, method_binding: binding
         call path: action_route('rename'), body: body
       end
