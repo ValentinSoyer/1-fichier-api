@@ -12,7 +12,9 @@ module UnFichierApi
 
     # Methods
     class << self
-      def call(path:, method: :post, body: {})
+      def call(path:, method: :post, body: {}, headers: {})
+        connection.headers.merge! headers
+
         response = connection.send(method, path) do |req|
           req.body = body.to_json
         end
