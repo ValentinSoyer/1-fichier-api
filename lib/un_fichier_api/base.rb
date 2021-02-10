@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'active_support/all'
 require 'faraday'
 require 'un_fichier_api/helpers/request_helper'
 

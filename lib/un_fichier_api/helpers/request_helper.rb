@@ -7,7 +7,7 @@ module UnFichierApi
 
       class_methods do
         private
-        
+
           def action_route(action_name)
             "#{self.name.demodulize.underscore}/#{action_name}.cgi"
           end
