@@ -1,8 +1,6 @@
 # UnFichierApi
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/un_fichier_api`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+UnFichierApi provide you a simple way to use the 1Fichier Api (https://1fichier.com/api.html).
 
 ## Installation
 
@@ -22,7 +20,36 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+For beggining, you must have an 1Fichier API key and reference it in a initializer like this:
+
+```ruby
+UnFichierApi::Base.api_key = 'MY_API_KEY'
+```
+
+UnFichierApi provide few objects that help you to call the 1Fichier API:
+- File
+- Folder
+- FtpUser
+- Ftp
+- Remote
+- User
+
+Features to be develop (if you want develop it, don't hesitate):
+- Upload
+
+All methods describe below have default params listed. You should replace default params by your own. 1Fichier has their own default values, for folder_id for example. Please refer to the 1Fichier API documentation here for more informations about it: https://1fichier.com/api.html
+
+### File object
+
+Get info of a folder
+```ruby
+UnFichierApi::File.info(url: nil, pass: nil, folder_id: nil, filename: nil, sharing_user: nil)
+```
+
+List files of a folder
+```ruby
+UnFichierApi::File.list(folder_id: nil, sharing_user: nil, sent_before: nil, sent_after: nil)
+```
 
 ## Development
 
