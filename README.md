@@ -39,7 +39,7 @@ Objects to be develop in future (if you want develop it, [don't hesitate](#contr
 
 All methods describe below have default listed params. You should replace default params by your own. 1Fichier has their own default values, for folder_id value for example.   
 
-Please refer to the 1Fichier API documentation here for all informations about API: https://1fichier.com/api.html
+Please refer to the 1Fichier API documentation [here](https://1fichier.com/api.html) for all informations about API.
 
 ### File object
 
