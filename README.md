@@ -32,14 +32,14 @@ UnFichierApi provide you few objects that help you to call the 1Fichier API:
 - [Ftp](#ftp-object)
 - [FtpUser](#ftp-user-object)
 - [Remote](#remote-upload-object)
-- User
+- [User](#user-object)
 
 Objects to be develop in future (if you want develop it, [don't hesitate](#contributing)):
 - Upload
 
 All methods describe below have default listed params. You should replace default params by your own. 1Fichier has their own default values, for folder_id value for example.   
 
-Please refer to the 1Fichier API documentation here for more informations about it: https://1fichier.com/api.html
+Please refer to the 1Fichier API documentation here for all informations about API: https://1fichier.com/api.html
 
 ### File object
 
@@ -274,6 +274,23 @@ headers: {
   'Name2': 'my_value_2'
 }
 ```
+
+### User object
+
+**Get/update informations about the user**
+```ruby
+UnFichierApi::User.info(ftp_mode: nil, ftp_did: nil, ftp_report: nil, ru_report: nil, default_domain: nil, page_limit: nil, default_port: nil, default_port_files: nil, use_cdn: nil, download_menu: nil)
+```
+`ftp_mode` : Mode of treatment of files uploaded by FTP. 0/automatic - 1/manual   
+`ftp_did` : Destination folder ID of files uploaded by FTP (default root/0)   
+`ftp_report` : Send a notification email after processing files uploaded by FTP.   
+`ru_report` : Sending a notification email after processing a Remote Upload request.   
+`default_domain` : Default file hosting domain (see table).   
+`page_limit` : Limit the number of files show on a page (web interface)   
+`default_port` : Default download port. 0/HTTP SSL - 1/HTTP   
+`default_port_files` : Default download port for your files. 0/HTTP SSL - 1/HTTP   
+`use_cdn` : Use your CDN credits for your own downloads.   
+`download_menu` : Display the download menu
 
 ## Contributing
 
