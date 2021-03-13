@@ -29,7 +29,7 @@ UnFichierApi::Base.api_key = 'MY_API_KEY'
 UnFichierApi provide you few objects that help you to call the 1Fichier API:
 - [File](#file-object)
 - [Folder](#folder-object)
-- Ftp
+- [Ftp](#ftp-object)
 - FtpUser
 - Remote
 - User
@@ -208,6 +208,13 @@ UnFichierApi::Folder.share(folder_id: nil, share: nil, pass: nil, shares: [])
 *shares/email* : Registered user email address   
 *shares/rw* : If allow in write mode   
 *shares/hide_links* : Hide download links (implies shares/rw = 0)
+
+### Ftp object
+
+**Processing request to upload your files in FTP**
+```ruby
+UnFichierApi::Ftp.process
+```
 
 ## Contributing
 
