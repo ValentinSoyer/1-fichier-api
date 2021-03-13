@@ -28,13 +28,13 @@ UnFichierApi::Base.api_key = 'MY_API_KEY'
 
 UnFichierApi provide you few objects that help you to call the 1Fichier API:
 - [File](#file-object)
-- Folder
+- [Folder](#folder-object)
 - Ftp
 - FtpUser
 - Remote
 - User
 
-Features to be develop in future (if you want develop it, don't hesitate):
+Features to be develop in future (if you want develop it, [don't hesitate](#contributing)):
 - Upload
 
 All methods describe below have default listed params. You should replace default params by your own. 1Fichier has their own default values, for folder_id value for example.   
@@ -155,6 +155,59 @@ UnFichierApi::File.change_attributes(urls: [], filename: nil, description: nil, 
 *acl/country* : List of countries to allow   
 *acl/email* : List of registered users emails to allow   
 *acl/premium* : Only allow our customers (Premium / Access)
+
+### Folder object
+
+**List folders**
+```ruby
+UnFichierApi::Folder.list(folder_id: nil, sharing_user: nil, files: nil)
+```
+*folder_id* : Identifier of the folder. Root if unspecified or 0.   
+*sharing_user* : Email of the user who shares the folder (mandatory if sharing the root folder - ignored otherwise)   
+*files* : (optional) : Add files list of the folder
+
+<br>
+
+**Create a folder**
+```ruby
+UnFichierApi::Folder.create(name: nil, folder_id: nil, sharing_user: nil)
+```
+*name*: Folder name   
+*folder_id* : Identifier of the parent folder. Root if unspecified or 0.   
+*sharing_user* : (optional) Email of the user sharing a folder (required if groupware sharing the root folder)
+
+<br>
+
+**Move a folder**
+```ruby
+UnFichierApi::Folder.move(folder_id: nil, destination_folder_id: nil, destination_user: nil, rename: nil)
+```
+*folder_id* : Folder ID to move (source)   
+*destination_folder_id* : Destination folder ID (root if "0")   
+*destination_user* : User email (used in the case of a groupware share with destination_folder_id = 0)   
+*rename* : New name for the folder (ignore destination_*)
+
+<br>
+
+**Remove a folder**
+```ruby
+UnFichierApi::Folder.remove(folder_id: nil)
+```
+*folder_id* : Folder ID to remove   
+
+<br>
+
+**Share a folder**
+```ruby
+UnFichierApi::Folder.share(folder_id: nil, share: nil, pass: nil, shares: [])
+```
+*folder_id* : Folder ID   
+*share* : If public sharing accessible via URL like https://1fichier.com/dir/abdef   
+*pass* : If "share", possibility to set an access password (6 characters minimum)   
+*shares* : Groupware shares with other registered users (0 or empty array to remove any groupware share)   
+*shares/email* : Registered user email address   
+*shares/rw* : If allow in write mode   
+*shares/hide_links* : Hide download links (implies shares/rw = 0)
 
 ## Contributing
 
