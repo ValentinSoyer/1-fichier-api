@@ -9,7 +9,7 @@ module UnFichierApi
     include Helpers::RequestHelper
 
     # Attributes
-    class_attribute :api_key, default: 'grzgKtlt6rCbiArOvZZHXO9wYqjtIDZa'
+    class_attribute :api_key
 
     # Methods
     class << self
