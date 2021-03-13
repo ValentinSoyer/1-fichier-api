@@ -1,6 +1,6 @@
 # UnFichierApi
 
-UnFichierApi provide you a simple way to use the 1Fichier Api with Ruby (https://1fichier.com/api.html).
+UnFichierApi provide you a simple way to use the 1Fichier API with Ruby (https://1fichier.com/api.html).
 
 ## Installation
 
