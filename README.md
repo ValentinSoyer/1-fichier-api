@@ -41,7 +41,7 @@ All methods describe below have default params listed. You should replace defaul
 
 ### File object
 
-Download a file
+#### Download a file
 ```ruby
 UnFichierApi::File.download(url: nil, inline: nil, cdn: nil, restrict_ip: nil, single: nil, pass: nil, no_ssl: nil, folder_id: nil, filename: nil, sharing_user: nil)
 ```
