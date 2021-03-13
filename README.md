@@ -31,7 +31,7 @@ UnFichierApi provide you few objects that help you to call the 1Fichier API:
 - [Folder](#folder-object)
 - [Ftp](#ftp-object)
 - [FtpUser](#ftp-user-object)
-- Remote
+- [Remote](#remote-upload-object)
 - User
 
 Objects to be develop in future (if you want develop it, [don't hesitate](#contributing)):
@@ -47,16 +47,16 @@ Please refer to the 1Fichier API documentation here for more informations about 
 ```ruby
 UnFichierApi::File.download(url: nil, inline: nil, cdn: nil, restrict_ip: nil, single: nil, pass: nil, no_ssl: nil, folder_id: nil, filename: nil, sharing_user: nil)
 ```
-*url* : Download link   
-*inline* : (optional) 0 or 1, if "inline" option enabled. You can always add "&inline=1" to the supplied url   
-*cdn* : (optional) 0 or 1, if using your CDN credits (forced if Premium / Access and identified server)   
-*restrict_ip* : (optional - for CDN only). 0 (default): No restriction, 1: Prohibits IP changes, 2: Prohibits any sub-requests   
-*single* : (optional). 0 (default) : Child requests allowed. 1: Prohibits any sub-requests   
-*pass* : (optional) Access password to the file, if restricted by password.   
-*no_ssl* : (optional) Disable SSL on the download link   
-*folder_id* : Folder ID (if groupware sharing with hidden download link option)   
-*filename* : Filename (if groupware sharing with hidden download link option)   
-*sharing_user* : Email of the user who shares his resource (essential if folder_id = 0 - if the file is at the root)
+`url` : Download link   
+`inline` : (optional) 0 or 1, if "inline" option enabled. You can always add "&inline=1" to the supplied url   
+`cdn` : (optional) 0 or 1, if using your CDN credits (forced if Premium / Access and identified server)   
+`restrict_ip` : (optional - for CDN only). 0 (default): No restriction, 1: Prohibits IP changes, 2: Prohibits any sub-requests   
+`single` : (optional). 0 (default) : Child requests allowed. 1: Prohibits any sub-requests   
+`pass` : (optional) Access password to the file, if restricted by password.   
+`no_ssl` : (optional) Disable SSL on the download link   
+`folder_id` : Folder ID (if groupware sharing with hidden download link option)   
+`filename` : Filename (if groupware sharing with hidden download link option)   
+`sharing_user` : Email of the user who shares his resource (essential if folder_id = 0 - if the file is at the root)
 
 <br>
 
@@ -64,11 +64,11 @@ UnFichierApi::File.download(url: nil, inline: nil, cdn: nil, restrict_ip: nil, s
 ```ruby
 UnFichierApi::File.info(url: nil, pass: nil, folder_id: nil, filename: nil, sharing_user: nil)
 ```
-*url*: (required) Url of the file   
-*pass* : (optional) Access password to the file, if restricted by password. Options, if it's a groupware shared folder file with the hidden download link feature.   
-*folder_id* : Folder ID   
-*filename* : Filename (exact/case sensitive)   
-*sharing_user* : Email of the account that shares the folder (useful if root folder / folder_id=0)
+`url`: (required) Url of the file   
+`pass` : (optional) Access password to the file, if restricted by password. Options, if it's a groupware shared folder file with the hidden download link feature.   
+`folder_id` : Folder ID   
+`filename` : Filename (exact/case sensitive)   
+`sharing_user` : Email of the account that shares the folder (useful if root folder / folder_id=0)
 
 <br>
 
@@ -76,9 +76,9 @@ UnFichierApi::File.info(url: nil, pass: nil, folder_id: nil, filename: nil, shar
 ```ruby
 UnFichierApi::File.list(folder_id: nil, sharing_user: nil, sent_before: nil, sent_after: nil)
 ```
-*folder_id* : (optional) Folder identifier. Root if unspecified or 0. -1 allow to list all files of the account   
-*sharing_user* : (optional) Email of the user sharing his folder - used if folder_id = 0 / root folder sent_before/sent_after : (optional) Allow to limit the return by date (can be used separately or not)   
-*sent_before/sent_after* : (optional) Limit the result by date. Params can be combined or not.
+`folder_id` : (optional) Folder identifier. Root if unspecified or 0. -1 allow to list all files of the account   
+`sharing_user` : (optional) Email of the user sharing his folder - used if folder_id = 0 / root folder sent_before/sent_after : (optional) Allow to limit the return by date (can be used separately or not)   
+`sent_before/sent_after` : (optional) Limit the result by date. Params can be combined or not.
 
 <br>
 
@@ -86,11 +86,11 @@ UnFichierApi::File.list(folder_id: nil, sharing_user: nil, sent_before: nil, sen
 ```ruby
 UnFichierApi::File.copy(urls: [], folder_id: nil, pass: nil, sharing_user: nil, rename: nil)
 ```
-*urls* : List (array) of files (download links) to copy. Copy all the files whose access is not restricted to you.   
-*folder_id* : Identifier of target folder / destination (0 or not specified if root).   
-*pass* : Access password (optional)   
-*sharing_user* : Email of the user sharing his destination resource (used if folder_id = 0 or empty)   
-*rename* : (optional) Rename the file (works with 1 URL only)
+`urls` : List (array) of files (download links) to copy. Copy all the files whose access is not restricted to you.   
+`folder_id` : Identifier of target folder / destination (0 or not specified if root).   
+`pass` : Access password (optional)   
+`sharing_user` : Email of the user sharing his destination resource (used if folder_id = 0 or empty)   
+`rename` : (optional) Rename the file (works with 1 URL only)
 
 <br>
 
@@ -98,10 +98,10 @@ UnFichierApi::File.copy(urls: [], folder_id: nil, pass: nil, sharing_user: nil, 
 ```ruby
 UnFichierApi::File.move(urls: [], destination_folder_id: nil, destination_user: nil, rename: nil)
 ```
-*urls* : List (array) of files (download links) to move. Allows you to move only your own files or files to which you have write access (groupware shares).   
-*destination_folder_id* : Identifier of the target folder (Root of your account if "0." Must be defined.).   
-*destination_user* : Email of the user sharing his destination resource (used if destination_folder_id = 0 or empty)   
-*rename* : (optional) Rename the file (works with 1 URL only)
+`urls` : List (array) of files (download links) to move. Allows you to move only your own files or files to which you have write access (groupware shares).   
+`destination_folder_id` : Identifier of the target folder (Root of your account if "0." Must be defined.).   
+`destination_user` : Email of the user sharing his destination resource (used if destination_folder_id = 0 or empty)   
+`rename` : (optional) Rename the file (works with 1 URL only)
 
 <br>
 
@@ -109,7 +109,7 @@ UnFichierApi::File.move(urls: [], destination_folder_id: nil, destination_user: 
 ```ruby
 UnFichierApi::File.rename(urls: [])
 ```
-*urls* : List (array) of files (download links) to rename. Only works with the account files (see example below).   
+`urls` : List (array) of files (download links) to rename. Only works with the account files (see example below).   
 ```ruby
 urls: [
   { url: 'https://1fichier.com/my_example', filename: 'my_filename' }
@@ -122,7 +122,7 @@ urls: [
 ```ruby
 UnFichierApi::File.remove(files: [])
 ```
-*files* : List (array) of files (download links) to remove. Precise a code for the files not linked to an account (optional). See example below.   
+`files` : List (array) of files (download links) to remove. Precise a code for the files not linked to an account (optional). See example below.   
 ```ruby
 files: [
   { url: 'https://1fichier.com/my_example', code: 'my_code' }
@@ -135,7 +135,7 @@ files: [
 ```ruby
 UnFichierApi::File.scan(url: nil)
 ```
-*url*: (required) url of the file to scan.   
+`url`: (required) url of the file to scan.   
 
 <br>
 
@@ -143,18 +143,18 @@ UnFichierApi::File.scan(url: nil)
 ```ruby
 UnFichierApi::File.change_attributes(urls: [], filename: nil, description: nil, pass: nil, no_ssl: nil, inline: nil, cdn: nil, acl: { ip: [], country: [], email: [], premium: nil })
 ```
-*urls* : List (array) files (download links) to edit. You can act on your files as well as the files to which you are authorized in write mode   
-*filename* : Change the file name. Only works with a single file   
-*description* : Modify the description of the file(s) (may be empty)   
-*pass* : Change the access password. 6 characters minimum. (may be empty to remove)   
-*no_ssl* : Force default access without SSL encryption   
-*inline* : Forces "inline" access, informs the browser of the content-type and does not force the opening of a download box.   
-*cdn* : Flag the files in "CDN".   
-*acl* : Advanced access controls. Can be empty to remove   
-*acl/ip* : List of IPs to allow. CIDR format.   
-*acl/country* : List of countries to allow   
-*acl/email* : List of registered users emails to allow   
-*acl/premium* : Only allow our customers (Premium / Access)
+`urls` : List (array) files (download links) to edit. You can act on your files as well as the files to which you are authorized in write mode   
+`filename` : Change the file name. Only works with a single file   
+`description` : Modify the description of the file(s) (may be empty)   
+`pass` : Change the access password. 6 characters minimum. (may be empty to remove)   
+`no_ssl` : Force default access without SSL encryption   
+`inline` : Forces "inline" access, informs the browser of the content-type and does not force the opening of a download box.   
+`cdn` : Flag the files in "CDN".   
+`acl` : Advanced access controls. Can be empty to remove   
+`acl/ip` : List of IPs to allow. CIDR format.   
+`acl/country` : List of countries to allow   
+`acl/email` : List of registered users emails to allow   
+`acl/premium` : Only allow our customers (Premium / Access)
 
 ### Folder object
 
@@ -162,9 +162,9 @@ UnFichierApi::File.change_attributes(urls: [], filename: nil, description: nil, 
 ```ruby
 UnFichierApi::Folder.list(folder_id: nil, sharing_user: nil, files: nil)
 ```
-*folder_id* : Identifier of the folder. Root if unspecified or 0.   
-*sharing_user* : Email of the user who shares the folder (mandatory if sharing the root folder - ignored otherwise)   
-*files* : (optional) : Add files list of the folder
+`folder_id` : Identifier of the folder. Root if unspecified or 0.   
+`sharing_user` : Email of the user who shares the folder (mandatory if sharing the root folder - ignored otherwise)   
+`files` : (optional) : Add files list of the folder
 
 <br>
 
@@ -172,9 +172,9 @@ UnFichierApi::Folder.list(folder_id: nil, sharing_user: nil, files: nil)
 ```ruby
 UnFichierApi::Folder.create(name: nil, folder_id: nil, sharing_user: nil)
 ```
-*name*: Folder name   
-*folder_id* : Identifier of the parent folder. Root if unspecified or 0.   
-*sharing_user* : (optional) Email of the user sharing a folder (required if groupware sharing the root folder)
+`name`: Folder name   
+`folder_id` : Identifier of the parent folder. Root if unspecified or 0.   
+`sharing_user` : (optional) Email of the user sharing a folder (required if groupware sharing the root folder)
 
 <br>
 
@@ -182,10 +182,10 @@ UnFichierApi::Folder.create(name: nil, folder_id: nil, sharing_user: nil)
 ```ruby
 UnFichierApi::Folder.move(folder_id: nil, destination_folder_id: nil, destination_user: nil, rename: nil)
 ```
-*folder_id* : Folder ID to move (source)   
-*destination_folder_id* : Destination folder ID (root if "0")   
-*destination_user* : User email (used in the case of a groupware share with destination_folder_id = 0)   
-*rename* : New name for the folder (ignore destination_*)
+`folder_id` : Folder ID to move (source)   
+`destination_folder_id` : Destination folder ID (root if "0")   
+`destination_user` : User email (used in the case of a groupware share with destination_folder_id = 0)   
+`rename` : New name for the folder (ignore destination_*)
 
 <br>
 
@@ -193,7 +193,7 @@ UnFichierApi::Folder.move(folder_id: nil, destination_folder_id: nil, destinatio
 ```ruby
 UnFichierApi::Folder.remove(folder_id: nil)
 ```
-*folder_id* : Folder ID to remove   
+`folder_id` : Folder ID to remove   
 
 <br>
 
@@ -201,13 +201,13 @@ UnFichierApi::Folder.remove(folder_id: nil)
 ```ruby
 UnFichierApi::Folder.share(folder_id: nil, share: nil, pass: nil, shares: [])
 ```
-*folder_id* : Folder ID   
-*share* : If public sharing accessible via URL like https://1fichier.com/dir/abdef   
-*pass* : If "share", possibility to set an access password (6 characters minimum)   
-*shares* : Groupware shares with other registered users (0 or empty array to remove any groupware share)   
-*shares/email* : Registered user email address   
-*shares/rw* : If allow in write mode   
-*shares/hide_links* : Hide download links (implies shares/rw = 0)
+`folder_id` : Folder ID   
+`share` : If public sharing accessible via URL like https://1fichier.com/dir/abdef   
+`pass` : If "share", possibility to set an access password (6 characters minimum)   
+`shares` : Groupware shares with other registered users (0 or empty array to remove any groupware share)   
+`shares/email` : Registered user email address   
+`shares/rw` : If allow in write mode   
+`shares/hide_links` : Hide download links (implies shares/rw = 0)
 
 ### Ftp object
 
@@ -229,9 +229,9 @@ UnFichierApi::FtpUser.list
 ```ruby
 UnFichierApi::FtpUser.create(user: nil, pass: nil, folder_id: nil)
 ```
-*user* : (required) Username   
-*pass* : (required) Password   
-*folder_id* : (optional) Destination folder identifier when upload files
+`user` : (required) Username   
+`pass` : (required) Password   
+`folder_id` : (optional) Destination folder identifier when upload files
 
 <br>
 
@@ -239,7 +239,41 @@ UnFichierApi::FtpUser.create(user: nil, pass: nil, folder_id: nil)
 ```ruby
 UnFichierApi::FtpUser.remove(user: nil)
 ```
-*user* : (required) Username
+`user` : (required) Username
+
+### Remote upload object
+
+**List the remote uploads**
+```ruby
+UnFichierApi::Remote.list
+```
+
+<br>
+
+**Info about a remote upload request**
+```ruby
+UnFichierApi::Remote.info(id: nil)
+```
+`id` : Remote upload request identifier identifier
+
+<br>
+
+**Create a remote upload request**
+```ruby
+UnFichierApi::Remote.request(urls: [], folder_id: nil, headers: {})
+```
+`urls` : List (array) of files (download links) to upload to the account.   
+`folder_id` : Destination folder (root if empty or "0")   
+`headers/name` : Alphanumeric characters accepted, including '-'. Insensitive to the box according to the RFC. We will normalize the variable in lowercase except for the first letter of words (eg Content-Type)   
+`headers/value` : Accepted alphanumeric characters, including space, tab (excluding the first and last characters) [-_+=%?,'"/]
+
+Example of `headers` value :
+```ruby
+headers: {
+  'Name1': 'my_value_1',
+  'Name2': 'my_value_2'
+}
+```
 
 ## Contributing
 
