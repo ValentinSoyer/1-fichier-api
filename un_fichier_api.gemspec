@@ -7,17 +7,14 @@ Gem::Specification.new do |spec|
   spec.version       = UnFichierApi::VERSION
   spec.authors       = ['Valentin Soyer']
   spec.email         = ['valent.soyer@gmail.com']
-
-  spec.summary       = %q{Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{Write a longer description or delete this line.}
+  spec.summary       = %q{Provide a simple way to use the 1Fichier API (https://1fichier.com/api.html).}
   spec.homepage      = 'https://github.com/ValentinSoyer/1-fichier-api'
   spec.license       = 'MIT'
 
   spec.metadata['allowed_push_host'] = "Set to 'http://mygemserver.com'"
-
-  spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/ValentinSoyer/1-fichier-api'
-  spec.metadata['changelog_uri'] = 'https://github.com/ValentinSoyer/1-fichier-api/CHANGELOG.md'
+  spec.metadata['homepage_uri']      = spec.homepage
+  spec.metadata['source_code_uri']   = spec.homepage
+  spec.metadata['changelog_uri']     = 'https://github.com/ValentinSoyer/1-fichier-api/CHANGELOG.md'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
