@@ -9,7 +9,7 @@ module UnFichierApi
     include Helpers::RequestHelper
 
     # Attributes
-    class_attribute :api_key
+    class_attribute :api_key, default: 'grzgKtlt6rCbiArOvZZHXO9wYqjtIDZa'
 
     # Methods
     class << self
@@ -26,7 +26,8 @@ module UnFichierApi
       def connection
         @connection ||= Faraday.new(
           url: 'https://api.1fichier.com/v1',
-          headers: { 'Content-Type' => 'application/json', 'Authorization' => "Bearer #{api_key}" }
+          headers: { 'Content-Type' => 'application/json', 'Authorization' => "Bearer #{api_key}" },
+          request: { timeout: 120 }
         )
       end
     end
