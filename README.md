@@ -1,6 +1,6 @@
 # UnFichierApi
 
-UnFichierApi provide you a simple way to use the 1Fichier Api (https://1fichier.com/api.html).
+UnFichierApi provide you a simple way to use the 1Fichier Api in Ruby (https://1fichier.com/api.html).
 
 ## Installation
 
@@ -20,17 +20,17 @@ Or install it yourself as:
 
 ## Usage
 
-For beggining, you must have an 1Fichier API key and reference it in a initializer like this:
+For beggining, you must have a 1Fichier API key and reference it in a initializer like this:
 
 ```ruby
 UnFichierApi::Base.api_key = 'MY_API_KEY'
 ```
 
-UnFichierApi provide few objects that help you to call the 1Fichier API:
+UnFichierApi provide you few objects that help you to call the 1Fichier API:
 - File
 - Folder
-- FtpUser
 - Ftp
+- FtpUser
 - Remote
 - User
 
@@ -41,7 +41,12 @@ All methods describe below have default params listed. You should replace defaul
 
 ### File object
 
-Get info of a folder
+Download a file
+```ruby
+UnFichierApi::File.download(url: nil, inline: nil, cdn: nil, restrict_ip: nil, single: nil, pass: nil, no_ssl: nil, folder_id: nil, filename: nil, sharing_user: nil)
+```
+
+Get informations of a file
 ```ruby
 UnFichierApi::File.info(url: nil, pass: nil, folder_id: nil, filename: nil, sharing_user: nil)
 ```
@@ -49,6 +54,36 @@ UnFichierApi::File.info(url: nil, pass: nil, folder_id: nil, filename: nil, shar
 List files of a folder
 ```ruby
 UnFichierApi::File.list(folder_id: nil, sharing_user: nil, sent_before: nil, sent_after: nil)
+```
+
+Copy file(s) in a folder
+```ruby
+UnFichierApi::File.copy(urls: [], folder_id: nil, pass: nil, sharing_user: nil, rename: nil)
+```
+
+Move file(s) in a new folder
+```ruby
+UnFichierApi::File.move(urls: [], destination_folder_id: nil, destination_user: nil, rename: nil)
+```
+
+Rename file(s)
+```ruby
+UnFichierApi::File.rename(urls: [])
+```
+
+Remove file(s)
+```ruby
+UnFichierApi::File.remove(files: [])
+```
+
+Scan file (with 1Fichier antivirus)
+```ruby
+UnFichierApi::File.scan(url: nil)
+```
+
+Change attributes of file(s)
+```ruby
+UnFichierApi::File.change_attributes(urls: [], filename: nil, description: nil, pass: nil, no_ssl: nil, inline: nil, cdn: nil, acl: { ip: [], country: [], email: [], premium: nil })
 ```
 
 ## Development
