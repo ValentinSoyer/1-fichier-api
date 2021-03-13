@@ -30,11 +30,11 @@ UnFichierApi provide you few objects that help you to call the 1Fichier API:
 - [File](#file-object)
 - [Folder](#folder-object)
 - [Ftp](#ftp-object)
-- FtpUser
+- [FtpUser](#ftp-user-object)
 - Remote
 - User
 
-Features to be develop in future (if you want develop it, [don't hesitate](#contributing)):
+Objects to be develop in future (if you want develop it, [don't hesitate](#contributing)):
 - Upload
 
 All methods describe below have default listed params. You should replace default params by your own. 1Fichier has their own default values, for folder_id value for example.   
@@ -215,6 +215,31 @@ UnFichierApi::Folder.share(folder_id: nil, share: nil, pass: nil, shares: [])
 ```ruby
 UnFichierApi::Ftp.process
 ```
+
+### Ftp user object
+
+**List the FTP users**
+```ruby
+UnFichierApi::FtpUser.list
+```
+
+<br>
+
+**Create a FTP user**
+```ruby
+UnFichierApi::FtpUser.create(user: nil, pass: nil, folder_id: nil)
+```
+*user* : (required) Username   
+*pass* : (required) Password   
+*folder_id* : (optional) Destination folder identifier when upload files
+
+<br>
+
+**Remove a FTP user**
+```ruby
+UnFichierApi::FtpUser.remove(user: nil)
+```
+*user* : (required) Username
 
 ## Contributing
 
